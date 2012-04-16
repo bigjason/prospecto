@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    prospecto (0.0.1)
-      rails (~> 3.2.3)
+    prospecto (0.0.5)
+      rails (>= 3.1.0)
 
 GEM
   remote: http://rubygems.org/
