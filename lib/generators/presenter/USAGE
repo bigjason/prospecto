@@ -1,0 +1,13 @@
+Description:
+    Generate a simple presenter class.
+
+    The name can be anything you want, there is no direct correlation between a
+    presenter and a single model, although there is often a correlation with the
+    presenter and the controller.
+
+Example:
+    rails generate presenter User
+
+    This will create:
+        app/presenters/user_presenter.rb
+        spec/presenters/user_presenter_spec.rb

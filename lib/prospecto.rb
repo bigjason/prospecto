@@ -1,3 +1,3 @@
 require 'prospecto/version'
-require 'prospecto/view'
+require 'prospecto/presenter_view'
 require 'prospecto/railtie' if defined?(Rails)
