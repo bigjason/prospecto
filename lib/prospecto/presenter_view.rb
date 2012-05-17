@@ -1,4 +1,7 @@
 module Prospecto
+  # Import the url helpers to allow resolving of URLs easily
+  include Rails.application.routes.url_helpers
+
   class PresenterView
     def initialize(args={})
       args.each do |name, value|
