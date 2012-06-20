@@ -97,6 +97,23 @@ view = UserPresenter.new(user: @user)
 puts "#{view.user_first} #{view.user_last}"
 ```
 
+### Rails Views and Controllers
+
+How you use the presenters is very loose.  Since you are just dealing with pretty vanilla
+ruby objects you can instantiate where it makes the most sense for your project.  Usually
+basic usage looks something like this.
+
+``` ruby
+class UserController < ApplicationController
+  def index
+    users = User.where(active: true)
+    @view = UserPresenter.new(users: users)
+  end
+end
+```
+
+You then use the `@view` object like normal in the view.
+
 ## Contributing
 
 1. Fork it
@@ -107,5 +124,5 @@ puts "#{view.user_first} #{view.user_last}"
 
 ## Sponsor
 
-Development for prospecto is sponsored largely by my employer [Voonami](http://www.voonami.com)
+Development for prospecto is sponsored mainly by my employer [Voonami](http://www.voonami.com)
 since we use it heavily in house.
