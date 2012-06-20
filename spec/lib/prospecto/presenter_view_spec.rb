@@ -4,11 +4,15 @@ describe Prospecto::PresenterView do
   let(:person) { OpenStruct.new(full_name: "Bob Smith", age: 43) }
 
   describe "#proxies" do
-    subject { ProxiedPresenter.new(person: person) }
+    [ProxiedPresenter, NestedProxiedPresenter].each do |klass|
+      describe "with #{klass}" do
+        subject { klass.new(person: person) }
 
-    its(:person_full_name) { should == person.full_name }
-    its(:person_age) { should == person.age}
-    its(:protected_methods) { should include(:person) }
+        its(:person_full_name) { should == person.full_name }
+        its(:person_age) { should == person.age}
+        its(:protected_methods) { should include(:person) }
+      end
+    end
   end
 
   describe "#accepts" do
@@ -27,10 +31,14 @@ describe Prospecto::PresenterView do
   end
 
   describe "#decorates" do
-    subject { DecoratesPresenter.new(person: person) }
+    [DecoratesPresenter, NestedDecoratesPresenter].each do |klass|
+      describe "with #{klass}" do
+        subject { klass.new(person: person) }
 
-    its(:full_name) { should == person.full_name }
-    its(:age) { should == 25 }
-    it { should_not respond_to(:person) }
+        its(:full_name) { should == person.full_name }
+        its(:age) { should == 25 }
+        it { should_not respond_to(:person) }
+      end
+    end
   end
 end

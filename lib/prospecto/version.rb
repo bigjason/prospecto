@@ -1,4 +1,5 @@
-# @private
+# Main Prospecto namespace.
 module Prospecto
-  VERSION = "0.2.0"
+  # The current Prospecto version.
+  VERSION = "0.2.1"
 end

@@ -1,6 +1,7 @@
 require "set"
 
 module Prospecto
+  # Optional base class for convenience when working with rails presenters.
   class PresenterView
     # Initialize a new PresenterView instance accepting the provided arguments.
     #
@@ -68,7 +69,7 @@ module Prospecto
         accepts(*args)
       end
 
-      # Instructs the class to proxy directly for this object like a true decorator. This is very simalar
+      # Instructs the class to proxy directly for this object like a true decorator. This is very similar
       # to how something like [draper](https://github.com/jcasimir/draper) works.
       #
       # @param [Symbols*] args name of the properties to accept.  This will be used in the constructor.
