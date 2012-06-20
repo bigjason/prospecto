@@ -1,6 +1,7 @@
 require 'rails/railtie'
 
 module Prospecto
+  # @private
   class Railtie < Rails::Railtie
     initializer "prospecto.initialize" do |app|
       # Import the url helpers to allow resolving of URLs easily

@@ -2,6 +2,10 @@ require "set"
 
 module Prospecto
   class PresenterView
+    # Initialize a new PresenterView instance accepting the provided arguments.
+    #
+    # @param [Hash] args key value pairs for what ever properties you declared
+    #                    on the class.
     def initialize(args={})
       args.each do |name, value|
         if respond_to? name
@@ -15,6 +19,7 @@ module Prospecto
       end
     end
 
+    # @private
     def method_missing(name, *args, &block)
       if property_name = self.class.__properties.find{|m| name.to_s.start_with? "#{m}_"}
         field_name = name.to_s.sub("#{property_name}_", "")
@@ -26,25 +31,23 @@ module Prospecto
       end
     end
 
+    # @private
     def __delegates
       @__delegates ||= Set.new
     end
 
     class << self
-      # "Presents" means a member will be reflected out to the view. Use of presents should be
-      # limited to very special cases.
-      alias :presents :attr_reader
-
-      def __properties
-        @__properties ||= Set.new
+      # Instructs the class to create a publicly visible version of the value.
+      #
+      # @param [Symbols*] args name of the properties to accept.  This will be used in the constructor.
+      def presents(*args)
+        attr_reader(*args)
       end
 
-      def __delegates
-        @__delegates ||= Set.new
-      end
-
-      # Accepts means the view uses the member internally, but it is not available
-      # outside the class.
+      # Instructs the class to *accept* the value internally but not
+      # publish it.
+      #
+      # @param [Symbols*] args name of the properties to accept.  This will be used in the constructor.
       def accepts(*args)
         args.each do |name|
           define_method name do
@@ -54,8 +57,10 @@ module Prospecto
         end
       end
 
-      # Proxies means that the properties of the object can be accessed directly from this object
-      # when prefixed with the object name. (ie: @view.user_full_name)
+      # Instructs the class that the properties of the object can be accessed directly from this object
+      # when prefixed with the object name. (ie: `@view.user_full_name`)
+      #
+      # @param [Symbols*] args name of the properties to accept.  This will be used in the constructor.
       def proxies(*args)
         args.each do |name|
           __properties << name
@@ -63,11 +68,24 @@ module Prospecto
         accepts(*args)
       end
 
-      # Decorates means that properties of the object will be available directly on the presenter.
+      # Instructs the class to proxy directly for this object like a true decorator. This is very simalar
+      # to how something like [draper](https://github.com/jcasimir/draper) works.
+      #
+      # @param [Symbols*] args name of the properties to accept.  This will be used in the constructor.
       def decorates(*args)
         args.each do |name|
           __delegates << name
         end
+      end
+
+      # @private
+      def __properties
+        @__properties ||= Set.new
+      end
+
+      # @private
+      def __delegates
+        @__delegates ||= Set.new
       end
     end
   end
