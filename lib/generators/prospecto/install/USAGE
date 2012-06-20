@@ -1,0 +1,12 @@
+Description:
+    Generate a base ApplicationPresenter class.
+
+    This is completely optional.  If an ApplicationPresenter is not found then
+    not base class will be set on new presenters.
+
+Example:
+    rails generate prospecto:install
+
+    This will create:
+        app/presenters/application_presenter.rb
+        spec/presenters/application_presenter_spec.rb

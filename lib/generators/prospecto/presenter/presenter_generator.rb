@@ -23,5 +23,13 @@ module Prospecto
     def single_name
       name.underscore.singularize
     end
+
+    def base_class
+      if File.exists?(Rails.root.join("app/presenters/application_presenter.rb"))
+        "ApplicationPresenter"
+      else
+        "Prospecto::PresenterView"
+      end
+    end
   end
 end

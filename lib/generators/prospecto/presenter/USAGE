@@ -6,7 +6,7 @@ Description:
     presenter and the controller.
 
 Example:
-    rails generate presenter User
+    rails generate prospecto:presenter User
 
     This will create:
         app/presenters/user_presenter.rb
