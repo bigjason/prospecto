@@ -70,18 +70,19 @@ view = UserPresenter.new(user: @user)
 puts user.name
 ```
 
-#### presents
+#### decorates
 
-The `presents` method is creates a public accessor for the provided value.  Use
-of this is discouraged.
+The `decorates` method allows the provided value to be accessed directly on the
+presenter.  This is simalar to how something like [draper](https://github.com/jcasimir/draper)
+works.
 
 ``` ruby
 class UserPresenter < Prospecto::PresenterView
-  presents :user_public
+  decorates :user
 end
 
-view = UserPresenter.new(user_public: @user)
-puts "#{view.user_public.first} #{view.user_public.last}"
+view = UserPresenter.new(user: @user)
+puts "#{view.first} #{view.last}"
 ```
 
 #### proxies
@@ -95,6 +96,20 @@ end
 
 view = UserPresenter.new(user: @user)
 puts "#{view.user_first} #{view.user_last}"
+```
+
+#### presents
+
+The `presents` method is creates a public accessor for the provided value.  Use
+of this is discouraged.
+
+``` ruby
+class UserPresenter < Prospecto::PresenterView
+  presents :user_public
+end
+
+view = UserPresenter.new(user_public: @user)
+puts "#{view.user_public.first} #{view.user_public.last}"
 ```
 
 ### Rails Views and Controllers

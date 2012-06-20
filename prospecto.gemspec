@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Jason Webb"]
   s.email       = ["bigjasonwebb@gmail.com"]
   s.homepage    = "http://github.com/bigjason/prospecto"
-  s.summary     = "Seperation of views and templates for rails projects."
+  s.summary     = "Simple rails presenter with an emphasis on just using ruby."
   s.description = ""
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 3.1.0"
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "turn"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "pry"
 end
