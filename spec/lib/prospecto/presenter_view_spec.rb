@@ -11,8 +11,13 @@ describe Prospecto::PresenterView do
         its(:person_full_name) { should == person.full_name }
         its(:person_age) { should == person.age}
         its(:protected_methods) { should include(:person) }
+
         it "accepts parameters correctly" do
           subject.person_plus_one(1).should == 2
+        end
+
+        it "accepts blocks correctly" do
+          subject.person_takes_block{ 3 }.should == 3
         end
       end
     end
@@ -44,6 +49,10 @@ describe Prospecto::PresenterView do
 
         it "accepts parameters correctly" do
           subject.plus_one(1).should == 2
+        end
+
+        it "accepts blocks correctly" do
+          subject.takes_block{ 3 }.should == 3
         end
       end
     end

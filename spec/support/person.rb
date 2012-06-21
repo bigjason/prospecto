@@ -10,4 +10,8 @@ class Person
   def plus_one(val)
     val + 1
   end
+
+  def takes_block(&block)
+    block.call
+  end
 end
