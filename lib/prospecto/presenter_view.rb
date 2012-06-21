@@ -32,6 +32,8 @@ module Prospecto
       end
     end
 
+    protected
+
     # @private
     def __delegates
       @__delegates ||= Set.new
