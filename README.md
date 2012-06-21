@@ -23,25 +23,27 @@ There are 2 problems that prospecto was created to solve.
 1. Views are hard and ineffective to test.
 2. Code is often common between the output formats.
 
-We feel that (our interpretation of) the presenter pattern is the answer to these problems. To be clear, you
-do not need a library to implement the presenter pattern.  The purpose of prospecto is to provide some syntactic
-sugar and structure.
+We feel that (our interpretation of) the presenter pattern is the answer to
+these problems. To be clear, you do not need a library to implement the
+presenter pattern.  The purpose of prospecto is to provide some syntactic sugar
+and structure.
 
 ## Usage
 
 ### ApplicationPresenter
 
-To start it is recommended (but not required) that you generate an `ApplicationPresenter`.  This will act
-as a base class for all other presenters much like an `ApplicationController`.  Just use the built in
-generator:
+To start it is recommended (but not required) that you generate an
+`ApplicationPresenter`.  This will act as a base class for all other presenters
+much like an `ApplicationController`.  Just use the built in generator:
 
     $ rails generate prospecto:install
 
 ### Presenter
 
-You are now ready to start creating presenters.  In prospecto a presenter does not necessarily correlate with
-a model (though this often ends up as the case), instead a presenter represents a view or family of views
-depending on the situation.  This is up to you to decide.
+You are now ready to start creating presenters.  In prospecto a presenter does
+not necessarily correlate with a model (though this often ends up as the case),
+instead a presenter represents a view or family of views depending on the
+situation.  This is up to you to decide.
 
 To create a simple presenter use the included generator:
 
@@ -49,8 +51,9 @@ To create a simple presenter use the included generator:
 
 ### Prospecto::PresenterView
 
-By default all presenters inherit from the `Prospecto::PresenterView` class.  This class is optional and exists
-solely to provide some sugar for creating constructors for objects.
+By default all presenters inherit from the `Prospecto::PresenterView` class.
+This class is optional and exists solely to provide some sugar for creating
+constructors for objects.
 
 #### accepts
 
@@ -73,8 +76,8 @@ puts user.name
 #### decorates
 
 The `decorates` method allows the provided value to be accessed directly on the
-presenter.  This is simalar to how something like [draper](https://github.com/jcasimir/draper)
-works.
+presenter.  This is simalar to how something like
+[draper](https://github.com/jcasimir/draper) works.
 
 ``` ruby
 class UserPresenter < Prospecto::PresenterView
@@ -87,7 +90,8 @@ puts "#{view.first} #{view.last}"
 
 #### proxies
 
-The `proxies` method creates named methods on the presenter for the provided value.
+The `proxies` method creates named methods on the presenter for the provided
+value.
 
 ``` ruby
 class UserPresenter < Prospecto::PresenterView
@@ -114,9 +118,9 @@ puts "#{view.user_public.first} #{view.user_public.last}"
 
 ### Rails Views and Controllers
 
-How you use the presenters is very loose.  Since you are just dealing with pretty vanilla
-ruby objects you can instantiate where it makes the most sense for your project.  Usually
-basic usage looks something like this.
+How you use the presenters is very loose.  Since you are just dealing with
+pretty vanilla ruby objects you can instantiate where it makes the most sense
+for your project.  Usually basic usage looks something like this.
 
 ``` ruby
 class UserController < ApplicationController
@@ -139,5 +143,5 @@ You then use the `@view` object like normal in the view.
 
 ## Sponsor
 
-Development for prospecto is sponsored mainly by my employer [Voonami](http://www.voonami.com)
-since we use it heavily in house.
+Development for prospecto is sponsored mainly by my employer
+[Voonami](http://www.voonami.com) since we use it heavily in house.
