@@ -24,9 +24,9 @@ module Prospecto
     def method_missing(name, *args, &block)
       if property_name = self.class.__properties.find{|m| name.to_s.start_with? "#{m}_"}
         field_name = name.to_s.sub("#{property_name}_", "")
-        self.send(property_name).send(field_name)
+        self.send(property_name).send(field_name, *args, &block)
       elsif delegate_obj = __delegates.find{|d| d.respond_to? name}
-        delegate_obj.send(name)
+        delegate_obj.send(name, *args, &block)
       else
         super
       end
