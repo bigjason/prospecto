@@ -11,6 +11,9 @@ describe Prospecto::PresenterView do
         its(:person_full_name) { should == person.full_name }
         its(:person_age) { should == person.age}
         its(:protected_methods) { should include(:person) }
+        it "accepts parameters correctly" do
+          subject.person_plus_one(1).should == 2
+        end
       end
     end
   end
