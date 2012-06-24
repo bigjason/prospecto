@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Overview
 
-There are 2 problems that prospecto was created to solve.
+There are a few problems that prospecto was created to solve.
 
 1. Views are hard and ineffective to test.
 2. Code is often common between the output formats.
